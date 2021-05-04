@@ -1,0 +1,80 @@
+[ ]
+#import statements 
+import numpy as np
+import pandas as pd
+from scipy import stats
+from scipy import interpolate
+import matplotlib.pyplot as plt
+from scipy import io
+from datetime import datetime
+import seaborn as sns
+
+# data filepath 
+from google.colab import drive
+drive.mount('/content/drive')
+filepath = 'drive/My Drive/MASTER XYZ FACTOR FILE (Jan 4 2021).csv'
+
+data = pd.read_csv(filepath)
+display(data)
+
+
+
+[ ]
+#the values I'm using for Chlorophyll are 0, 6.1, 7.6, and 19 
+chla = np.genfromtxt(filepath, skip_header = 1, usecols= 5, delimiter = ',')
+
+#location data and adding it to the data 
+x = np.genfromtxt(filepath, skip_header = 1, usecols = 8, delimiter = ',')
+
+
+df = pd.DataFrame(data)
+sLength = len(df['x'])
+#df.x = abs(df.x* 100000)
+…def create_bins(lower_bound, width, quantity):
+  binss = []
+  for low in range(lower_bound, 
+                     lower_bound + quantity*width + 1, width):
+        bins.append((low, low+width))
+  return bins
+binss = create_bins(lower_bound=0,
+                   width=5,
+                   quantity=20)
+
+
+
+[ ]
+x0 = pd.cut(df_0['x'], bins = bins_list)
+x0.head()
+df_0['x'].plot(kind = 'hist', orientation="horizontal", bins = bins_list)
+plt.gca().invert_yaxis()
+plt.title('0 umol/kg')
+plt.ylabel('depth')
+
+
+[ ]
+x6 = pd.cut(df_6['x'], bins = 10)
+x6.head()
+df_6['x'].plot(kind = 'hist', orientation="horizontal", bins = bins_list)
+plt.gca().invert_yaxis()
+plt.title('6.1 umol/kg')
+plt.ylabel('depth')
+
+
+[ ]
+x7 = pd.cut(df_7['x'], bins = bins_list)
+x7.head()
+df_7['x'].plot(kind = 'hist', orientation="horizontal", bins = bins_list)
+plt.gca().invert_yaxis()
+plt.title('7 umol/kg')
+plt.ylabel('depth')
+
+
+[ ]
+x19 = pd.cut(df_19['x'], bins = bins_list)
+x19.head()
+df_19['x'].plot(kind = 'hist', orientation="horizontal", bins = bins_list) 
+plt.gca().invert_yaxis()
+plt.title('19 umol/kg')
+plt.ylabel('depth')
+
+
